@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // add validation for each field
 // enable user to choose previous date,
 const Booking = () => {
+  const [errMsg, setErrMsg] = useState(null);
   const [formState, setFormState] = useState({
     firstName: null,
     lastName: null,
@@ -13,19 +14,26 @@ const Booking = () => {
   });
 
   const onChange = (e) => {
+    if (errMsg) {
+      setErrMsg(null);
+    }
     const inputValue = { [e.target.id]: e.target.value };
     setFormState({ ...formState, ...inputValue });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { firstName, lastName, date, phone, email, persons } = formState;
+    if (!firstName || !lastName || !date || !phone || !email || !persons) {
+      setErrMsg("All fields are required");
+    }
   };
 
   return (
     <div>
       <h1>This is Booking page</h1>
       <p>Please fill in this form</p>
-
+      {errMsg && <p style={{ color: "red" }}>{errMsg}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="firstName">First name</label>
