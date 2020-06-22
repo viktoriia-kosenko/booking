@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Booking from "../components/Booking";
-import Seating from "../components/Seating";
+import Booking from "../components/BookingPage";
+import Seating from "../components/SeatingPage";
 import LandingPage from "../components/LandingPage";
 
 export default () => (
