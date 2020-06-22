@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
-// add validation for each field
+// add proper validation for each field
 // enable user to choose previous date,
+
 const Booking = () => {
   const [errMsg, setErrMsg] = useState(null);
+
+  ////change on useReducer
   const [formState, setFormState] = useState({
     firstName: null,
     lastName: null,
@@ -21,11 +24,22 @@ const Booking = () => {
     setFormState({ ...formState, ...inputValue });
   };
 
+  //refactor
   const handleSubmit = (e) => {
     e.preventDefault();
     const { firstName, lastName, date, phone, email, persons } = formState;
     if (!firstName || !lastName || !date || !phone || !email || !persons) {
       setErrMsg("All fields are required");
+    } else {
+      if (localStorage.getItem("bookings") === null) {
+        localStorage.setItem("bookings", JSON.stringify([formState]));
+      } else {
+        const existingEntries = JSON.parse(localStorage.getItem("bookings"));
+        localStorage.setItem(
+          "bookings",
+          JSON.stringify([...existingEntries, formState])
+        );
+      }
     }
   };
 
