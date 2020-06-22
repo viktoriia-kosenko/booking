@@ -4,23 +4,23 @@ import React, { useState } from "react";
 // enable user to choose previous date,
 
 const Booking = () => {
-  const [errMsg, setErrMsg] = useState(null);
+  const initialFormState = {
+    firstName: "",
+    lastName: "",
+    date: "",
+    phone: "",
+    email: "",
+    persons: "",
+  };
 
-  ////change on useReducer
-  const [formState, setFormState] = useState({
-    firstName: null,
-    lastName: null,
-    date: null,
-    phone: null,
-    email: null,
-    persons: null,
-  });
+  ////change on useReducer ?
+  const [formState, setFormState] = useState(initialFormState);
+  const [errMsg, setErrMsg] = useState(null);
 
   const onChange = (e) => {
     if (errMsg) {
       setErrMsg(null);
     }
-
     const inputValue = { [e.target.id]: e.target.value };
     setFormState({ ...formState, ...inputValue });
   };
@@ -46,6 +46,7 @@ const Booking = () => {
           JSON.stringify([...existingEntries, { ...formState, bookingN }])
         );
       }
+      setFormState(initialFormState);
     }
   };
 
@@ -62,6 +63,7 @@ const Booking = () => {
             placeholder="First Name"
             id="firstName"
             onChange={onChange}
+            value={formState.firstName}
           />
         </div>
         <div>
@@ -71,6 +73,7 @@ const Booking = () => {
             placeholder="Last Name"
             id="lastName"
             onChange={onChange}
+            value={formState.lastName}
           />
         </div>
         <div>
@@ -80,6 +83,7 @@ const Booking = () => {
             placeholder="Dining Date"
             id="date"
             onChange={onChange}
+            value={formState.date}
           />
         </div>
         <div>
@@ -91,6 +95,7 @@ const Booking = () => {
             max="12"
             placeholder="1-12"
             onChange={onChange}
+            value={formState.persons}
           />
         </div>
         <div>
@@ -101,6 +106,7 @@ const Booking = () => {
             pattern="[0-9]{11}"
             placeholder="11 digits"
             onChange={onChange}
+            value={formState.phone}
           />
         </div>
         <div>
@@ -110,6 +116,7 @@ const Booking = () => {
             id="email"
             placeholder="xxxxx@xxx.xx"
             onChange={onChange}
+            value={formState.email}
           />
         </div>
         <button type="submit">Save booking</button>
