@@ -19,9 +19,7 @@ export const addToLocalStorage = (key, data) => {
 
 export const saveStatus = (bookingNumber, status) => {
   const existingBookings = parseLocalStorageData("bookings");
-  const updatedBookings = existingBookings.map((booking) =>
-    booking.bookingN === bookingNumber ? { ...booking, status } : booking
-  );
+  const updatedBookings = updateArray(existingBookings, bookingNumber, status);
   saveToLocalStorage("bookings", updatedBookings);
 };
 
