@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import {
+  getLocalStorageData,
+  saveToLocalStorage,
+  addToLocalStorage,
+  validateForm,
+} from "../helpers";
 
 // add proper validation for each field
 // enable user to choose previous date,
@@ -13,39 +19,27 @@ const Booking = () => {
     persons: "",
   };
 
-  ////change on useReducer ?
+  ////change useState for formState on useReducer ?
   const [formState, setFormState] = useState(initialFormState);
   const [errMsg, setErrMsg] = useState(null);
 
   const onChange = (e) => {
-    if (errMsg) {
-      setErrMsg(null);
-    }
+    errMsg && setErrMsg(null);
     const inputValue = { [e.target.id]: e.target.value };
     setFormState({ ...formState, ...inputValue });
   };
 
-  //refactor
+  // add proper validation for each field
   // bookingN should be unique value, could use uuid
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { firstName, lastName, date, phone, email, persons } = formState;
-    if (!firstName || !lastName || !date || !phone || !email || !persons) {
+    if (validateForm(formState)) {
       setErrMsg("All fields are required");
     } else {
-      if (localStorage.getItem("bookings") === null) {
-        localStorage.setItem(
-          "bookings",
-          JSON.stringify([{ ...formState, bookingN: 1 }])
-        );
-      } else {
-        const existingEntries = JSON.parse(localStorage.getItem("bookings"));
-        const bookingN = existingEntries.length + 1;
-        localStorage.setItem(
-          "bookings",
-          JSON.stringify([...existingEntries, { ...formState, bookingN }])
-        );
-      }
+      getLocalStorageData("bookings")
+        ? addToLocalStorage("bookings", formState)
+        : saveToLocalStorage("bookings", [{ ...formState, bookingN: 1 }]);
+
       setFormState(initialFormState);
     }
   };

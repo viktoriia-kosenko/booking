@@ -5,7 +5,7 @@ const Booking = ({ booking, setBookings }) => {
   const [statusB, setStatusB] = useState(null);
   const [displaySave, setDisplaySave] = useState(false);
 
-  const onStatusChange = (e) => {
+  const onInputChange = (e) => {
     setDisplaySave(true);
     setStatusB(e.target.value);
   };
@@ -49,7 +49,7 @@ const Booking = ({ booking, setBookings }) => {
           <span>Status</span>
 
           <input
-            onChange={onStatusChange}
+            onChange={onInputChange}
             type="radio"
             id={booking.bookingN + "notArrived"}
             name={booking.bookingN + "status"}
@@ -59,7 +59,7 @@ const Booking = ({ booking, setBookings }) => {
           <label htmlFor="notArrived">Not arrived</label>
 
           <input
-            onChange={onStatusChange}
+            onChange={onInputChange}
             type="radio"
             id={booking.bookingN + "seated"}
             name={booking.bookingN + "status"}
