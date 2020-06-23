@@ -1,15 +1,3 @@
-/* .App {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
 .navbar {
   display: flex;
   align-items: center;
@@ -21,7 +9,7 @@
 .navbar a {
   color: #ffffff;
   text-decoration: none;
-  padding: 20px;
+  padding: 15px;
 }
 
 .landing {
@@ -59,7 +47,6 @@
 }
 .booking-page-form {
   display: grid;
-
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(7, 1fr);
   grid-column-gap: 5px;
@@ -75,4 +62,54 @@
   background-color: #ffa726;
   width: 60%;
   border-radius: 5px;
+}
+
+/* Seating page */
+.booking-wrapper {
+  width: 90%;
+  margin: 5% auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.booking-card {
+  box-shadow: 0 0 2px 0 #546e7a inset, 0 0 10px 2px #546e7a;
+  margin: 15px;
+  padding: 20px;
+  width: 350px;
+  height: 230px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr) 2fr;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+}
+.booking-card p {
+  margin: 0;
+}
+.status {
+  grid-area: 7 / 1 / 8 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.status label {
+  padding: 0 10px 0 0;
+}
+.status-btn {
+  color: #ffffff;
+  background: #ffa726;
+  margin: 5px;
+  padding: 8px 20px;
+  border-radius: 5px;
+}
+.status-btn:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 942px) {
+  .booking-card {
+    height: auto;
+  }
 }

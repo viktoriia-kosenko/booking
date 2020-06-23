@@ -29,51 +29,61 @@ const Booking = ({ booking, setBookings }) => {
   };
 
   return (
-    <div style={{ border: "1px solid grey" }}>
-      <p>Booking #{booking.bookingN}</p>
+    <div className="booking-card" style={{ border: "1px solid grey" }}>
+      <p>Booking </p> <p>#{booking.bookingN}</p>
+      <p>Name:</p>{" "}
       <p>
-        Name: {booking.firstName} {booking.lastName}
+        {booking.firstName} {booking.lastName}
       </p>
-      <p>Phone number: {booking.phone}</p>
-      <p>Email: {booking.email}</p>
-      <p>Number of Covers: {booking.persons}</p>
-      <p>Date: {booking.date}</p>
-
+      <p>Phone number: </p> <p>{booking.phone}</p>
+      <p>Email: </p> <p>{booking.email}</p>
+      <p>Number of Covers:</p> <p> {booking.persons}</p>
+      <p>Date: </p> <p>{booking.date}</p>
       {booking.status && !displaySave ? (
-        <p>
-          Status: {booking.status}
-          <button onClick={onChangeStatus}>Change </button>
-        </p>
+        <div className="status">
+          <div>
+            Status: {booking.status}
+            <button className="status-btn" onClick={onChangeStatus}>
+              Change{" "}
+            </button>
+          </div>
+        </div>
       ) : (
-        <>
-          <span>Status</span>
+        <div className="status">
+          <div>
+            <span>Status</span>
 
-          <input
-            onChange={onInputChange}
-            type="radio"
-            id={booking.bookingN + "notArrived"}
-            name={booking.bookingN + "status"}
-            value="not Arrived"
-            checked={statusB === "not Arrived"}
-          />
-          <label htmlFor="notArrived">Not arrived</label>
+            <input
+              onChange={onInputChange}
+              type="radio"
+              id={booking.bookingN + "notArrived"}
+              name={booking.bookingN + "status"}
+              value="not Arrived"
+              checked={statusB === "not Arrived"}
+            />
+            <label htmlFor="notArrived">Not arrived</label>
 
-          <input
-            onChange={onInputChange}
-            type="radio"
-            id={booking.bookingN + "seated"}
-            name={booking.bookingN + "status"}
-            value="seated"
-            checked={statusB === "seated"}
-          />
-          <label htmlFor="seated">Seated</label>
+            <input
+              onChange={onInputChange}
+              type="radio"
+              id={booking.bookingN + "seated"}
+              name={booking.bookingN + "status"}
+              value="seated"
+              checked={statusB === "seated"}
+            />
+            <label htmlFor="seated">Seated</label>
+          </div>
           {displaySave && (
-            <>
-              <button onClick={onSave}>Save</button>
-              <button onClick={onCancel}>Cancel</button>
-            </>
+            <div>
+              <button className="status-btn" onClick={onSave}>
+                Save
+              </button>
+              <button className="status-btn" onClick={onCancel}>
+                Cancel
+              </button>
+            </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );

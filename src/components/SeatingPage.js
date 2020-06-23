@@ -15,7 +15,7 @@ const Seating = () => {
   return bookings.length === 0 ? (
     <p>No bookings yet</p>
   ) : (
-    <div>
+    <div className="booking-wrapper">
       {bookings.map((booking, index) => {
         return (
           <Booking key={index} booking={booking} setBookings={setBookings} />
