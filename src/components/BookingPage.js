@@ -32,6 +32,7 @@ const Booking = () => {
   // add proper validation for each field
   // bookingN should be unique value, could use uuid
   const handleSubmit = (e) => {
+    console.log(formState);
     e.preventDefault();
     if (validateForm(formState)) {
       setErrMsg("All fields are required");
