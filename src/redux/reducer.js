@@ -13,7 +13,14 @@ const initState = {
 };
 
 const reducer = (state = initState, action) => {
-  return state;
+  switch (action.type) {
+    case "ADD_BOOKING":
+      const bookingN = state.bookings.length + 1;
+      const newBookings = [...state.bookings, { ...action.booking, bookingN }];
+      return { ...state, bookings: newBookings };
+    default:
+      return state;
+  }
 };
 
 export default reducer;

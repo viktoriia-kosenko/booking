@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import {
-  getLocalStorageData,
-  saveToLocalStorage,
-  addToLocalStorage,
-  validateForm,
-} from "../helpers";
+import { validateForm } from "../helpers";
+import { connect } from "react-redux";
 
 // add proper validation for each field
 // enable user to choose previous date,
 
-const Booking = () => {
+const Booking = ({ addBooking }) => {
   const initialFormState = {
     firstName: "",
     lastName: "",
@@ -32,15 +28,11 @@ const Booking = () => {
   // add proper validation for each field
   // bookingN should be unique value, could use uuid
   const handleSubmit = (e) => {
-    console.log(formState);
     e.preventDefault();
     if (validateForm(formState)) {
       setErrMsg("All fields are required");
     } else {
-      getLocalStorageData("bookings")
-        ? addToLocalStorage("bookings", formState)
-        : saveToLocalStorage("bookings", [{ ...formState, bookingN: 1 }]);
-
+      addBooking(formState);
       setFormState(initialFormState);
     }
   };
@@ -113,4 +105,12 @@ const Booking = () => {
   );
 };
 
-export default Booking;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addBooking: (booking) => {
+      dispatch({ type: "ADD_BOOKING", booking });
+    },
+  };
+};
+
+export default connect("", mapDispatchToProps)(Booking);
