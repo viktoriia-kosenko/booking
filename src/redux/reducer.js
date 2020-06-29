@@ -1,10 +1,18 @@
 const initState = {
-  bookings: [],
-  //[{ date: "2020-06-26",​email: "vicky@gmai.com",firstName: "Vicky", lastName: "Kosenko", persons: "4", phone: "12345678911"
-  // }]
+  bookings: [
+    {
+      bookingN: 1,
+      firstName: "Vicky",
+      lastName: "Kosenko",
+      date: "25/06/2020",
+      phone: "1123457890",
+      email: "kos@gmail.com",
+      persons: 6,
+    },
+  ],
 };
 
-const reducer = (state, action) => {
+const reducer = (state = initState, action) => {
   return state;
 };
 

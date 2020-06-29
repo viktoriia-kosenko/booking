@@ -1,28 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Booking from "./Booking";
-import { getLocalStorageData, parseLocalStorageData } from "../helpers";
+import { connect } from "react-redux";
 
-const Seating = () => {
-  const [bookings, setBookings] = useState([]);
-
-  useEffect(() => {
-    if (getLocalStorageData("bookings")) {
-      const existingBookings = parseLocalStorageData("bookings");
-      setBookings(existingBookings);
-    }
-  }, [setBookings]);
-
+const Seating = ({ bookings }) => {
   return bookings.length === 0 ? (
     <p>No bookings yet</p>
   ) : (
     <div className="booking-wrapper">
       {bookings.map((booking, index) => {
-        return (
-          <Booking key={index} booking={booking} setBookings={setBookings} />
-        );
+        return <Booking key={index} booking={booking} />;
       })}
     </div>
   );
 };
-
-export default Seating;
+const mapStateToProps = (state) => {
+  return {
+    bookings: state.bookings,
+  };
+};
+export default connect(mapStateToProps)(Seating);
