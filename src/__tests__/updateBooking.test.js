@@ -1,4 +1,4 @@
-const { updateArray } = require("../helpers");
+const { updateBooking } = require("../helpers");
 
 const mockData = [
   {
@@ -67,12 +67,12 @@ const expectedResult2 = [
 
 describe("updateArray", () => {
   test("should return array with changed status from not Arrived to seated", () => {
-    const res = updateArray(mockData, 1, "seated");
+    const res = updateBooking(mockData, 1, "seated");
     expect(res).toEqual(expectedResult1);
   });
 
   test("should return array with given status when the status was not defined", () => {
-    const res = updateArray(mockData, 5, "not Arrived");
+    const res = updateBooking(mockData, 5, "not Arrived");
     expect(res).toEqual(expectedResult2);
   });
 });

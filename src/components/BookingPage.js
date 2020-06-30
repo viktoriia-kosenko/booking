@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { validateForm } from "../helpers";
 import { connect } from "react-redux";
+import { addNewBooking } from "../redux/actionCreators";
 
 // add proper validation for each field
 // enable user to choose previous date,
 
-const Booking = ({ addBooking }) => {
+const Booking = ({ addNewBooking }) => {
   const initialFormState = {
     firstName: "",
     lastName: "",
@@ -15,7 +16,6 @@ const Booking = ({ addBooking }) => {
     persons: "",
   };
 
-  ////change useState for formState on useReducer ?
   const [formState, setFormState] = useState(initialFormState);
   const [errMsg, setErrMsg] = useState(null);
 
@@ -32,7 +32,7 @@ const Booking = ({ addBooking }) => {
     if (validateForm(formState)) {
       setErrMsg("All fields are required");
     } else {
-      addBooking(formState);
+      addNewBooking(formState);
       setFormState(initialFormState);
     }
   };
@@ -107,8 +107,8 @@ const Booking = ({ addBooking }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addBooking: (booking) => {
-      dispatch({ type: "ADD_BOOKING", booking });
+    addNewBooking: (newBooking) => {
+      dispatch(addNewBooking(newBooking));
     },
   };
 };

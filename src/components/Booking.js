@@ -1,30 +1,27 @@
 import React, { useState } from "react";
-import { saveStatus } from "../helpers";
 
-const Booking = ({ booking, setBookings }) => {
-  const [statusB, setStatusB] = useState(null);
+const Booking = ({ booking, changeBookingStatus }) => {
+  const [status, setStatus] = useState(null);
   const [displaySave, setDisplaySave] = useState(false);
 
   const onInputChange = (e) => {
     setDisplaySave(true);
-    setStatusB(e.target.value);
+    setStatus(e.target.value);
   };
 
   const onCancel = () => {
     setDisplaySave(false);
-    setStatusB(null);
+    setStatus(null);
   };
 
   const onSave = () => {
-    saveStatus(booking.bookingN, statusB);
-    const existingEntries = JSON.parse(localStorage.getItem("bookings"));
-    setBookings(existingEntries);
+    changeBookingStatus({ bookingN: booking.bookingN, status });
     setDisplaySave(false);
-    setStatusB(null);
+    setStatus(null);
   };
 
   const onChangeStatus = () => {
-    setStatusB(booking.status);
+    setStatus(booking.status);
     setDisplaySave(true);
   };
 
@@ -59,7 +56,7 @@ const Booking = ({ booking, setBookings }) => {
               id={booking.bookingN + "notArrived"}
               name={booking.bookingN + "status"}
               value="not Arrived"
-              checked={statusB === "not Arrived"}
+              checked={status === "not Arrived"}
             />
             <label htmlFor="notArrived">Not arrived</label>
 
@@ -69,7 +66,7 @@ const Booking = ({ booking, setBookings }) => {
               id={booking.bookingN + "seated"}
               name={booking.bookingN + "status"}
               value="seated"
-              checked={statusB === "seated"}
+              checked={status === "seated"}
             />
             <label htmlFor="seated">Seated</label>
           </div>

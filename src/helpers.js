@@ -19,11 +19,15 @@ export const addToLocalStorage = (key, data) => {
 
 export const saveStatus = (bookingNumber, status) => {
   const existingBookings = parseLocalStorageData("bookings");
-  const updatedBookings = updateArray(existingBookings, bookingNumber, status);
+  const updatedBookings = updateBooking(
+    existingBookings,
+    bookingNumber,
+    status
+  );
   saveToLocalStorage("bookings", updatedBookings);
 };
 
-export const updateArray = (bookings, bookingNumber, status) => {
+export const updateBooking = (bookings, bookingNumber, status) => {
   return bookings.map((booking) =>
     booking.bookingN === bookingNumber ? { ...booking, status } : booking
   );
