@@ -1,7 +1,7 @@
 import { CHANGE_BOOKING_STATUS, ADD_BOOKING } from "./actionTypes";
 import { updateBooking } from "../helpers";
 
-const initState = {
+export const initState = {
   bookings: [
     {
       bookingN: 1,
