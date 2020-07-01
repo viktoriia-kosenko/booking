@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const Booking = ({ booking, changeBookingStatus }) => {
   const [status, setStatus] = useState(null);
@@ -84,6 +85,10 @@ const Booking = ({ booking, changeBookingStatus }) => {
       )}
     </div>
   );
+};
+
+Booking.propTypes = {
+  booking: PropTypes.object.isRequired,
 };
 
 export default Booking;
