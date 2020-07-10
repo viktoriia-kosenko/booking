@@ -18,7 +18,7 @@ export const initState = {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case ADD_BOOKING:
-      const bookingN = state.bookings.length + 1;
+      const bookingN = Date.now();
       const updatedBookings = [
         ...state.bookings,
         { ...action.newBooking, bookingN },
