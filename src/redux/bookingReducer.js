@@ -14,7 +14,6 @@ export const initState = [
 ];
 
 const bookingReducer = (state = initState, action) => {
-  console.log(action);
   switch (action.type) {
     case ADD_BOOKING:
       const bookingN = Date.now();
