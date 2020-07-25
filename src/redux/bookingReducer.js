@@ -3,7 +3,7 @@ import { updateBooking } from "../helpers";
 
 export const initState = [
   {
-    bookingN: 1594463945383,
+    bookingN: 1594463945300,
     firstName: "Vicky",
     lastName: "Kosenko",
     date: "25/06/2020",
